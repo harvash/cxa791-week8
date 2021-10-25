@@ -2,13 +2,17 @@ podTemplate(
   yaml: '''
     apiVersion: v1
     kind: Pod
-    spec:containers:
-    - name: calculator
-      image: dlambrig/week8:1.1
-      command:
-      - sleep
-      args:-99d
-    restartPolicy: Never
+    spec:
+      containers:
+      - name: calculator
+        image: dlambrig/week8:1.1
+        env:
+        - name: CALCIP
+        value: 10.1.3.213
+        command:
+        - sleep
+        args:-99d
+      restartPolicy: Never
     '''
 ) {
   node(POD_LABEL) {
