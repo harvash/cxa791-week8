@@ -9,9 +9,6 @@ podTemplate(
         env:
         - name: CALCIP
         value: 10.1.3.213
-        command:
-        - sleep
-        args: '-99d'
       restartPolicy: Never
     '''
 ) {
