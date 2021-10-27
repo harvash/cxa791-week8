@@ -13,7 +13,6 @@ pipeline {
     stage('Test code'){
       stages {
         stage ('Run tests for master branch') { 
-          when { branch 'master' }
           steps { 
             container('gradle') {
               sh '''cd Chapter09/sample3
