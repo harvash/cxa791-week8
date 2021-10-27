@@ -1,5 +1,8 @@
 apiVersion: v1 
 kind: Pod
+metadata:
+  labels:
+    app: calc
 spec:
   containers:
   - name: gradle
