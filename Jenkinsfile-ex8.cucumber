@@ -17,7 +17,7 @@ pipeline {
             container('gradle') {
               sh '''cd Chapter09/sample3
                     ls -l
-                    chmod +x gradlew      
+                    chmod +x gradlew --info 
                     ./gradlew acceptanceTest
                 ''' 
               publishHTML (
