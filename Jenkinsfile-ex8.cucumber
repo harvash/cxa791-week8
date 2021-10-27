@@ -17,8 +17,8 @@ pipeline {
             container('gradle') {
               sh '''cd Chapter09/sample3
                     ls -l
-                    chmod +x gradlew --info 
-                    ./gradlew acceptanceTest
+                    chmod +x gradlew
+                    ./gradlew acceptanceTest  -Dcalculator.url=http://10.98.57.92:8080
                 ''' 
               publishHTML (
                 target: [
