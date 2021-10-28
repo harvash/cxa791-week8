@@ -28,16 +28,5 @@ spec:
           requests:
             cpu: 100m
             memory: 256Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: calc-svc
-  namespace: week8
-spec:
-  type: NodePort
-  selector:
-    app: calc
-  ports:
-  - port: 8080
+
 
