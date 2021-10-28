@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hazelcast
-  namespace: default
+  namespace: week8
   labels:
     app: hazelcast
 spec:
@@ -27,6 +27,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: hazelcast
+  namespace: week8
 spec:
   selector:
     app: hazelcast
