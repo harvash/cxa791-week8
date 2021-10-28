@@ -30,7 +30,7 @@ pipeline {
           sh '''cd Chapter09/sample3
                 ls -l
                 chmod +x gradlew
-                ./gradlew acceptanceTest  -Dcalculator.url=http://calc-svc:8080 --info
+                ./gradlew acceptanceTest  -Dcalculator.url=http://calc-svc:8080
             ''' 
           publishHTML (
             target: [
