@@ -18,7 +18,7 @@ pipeline {
               sh '''cd Chapter09/sample3
                     ls -l
                     chmod +x gradlew
-                    ./gradlew acceptanceTest  -Dcalculator.url=http://10.103.39.248:8080 --info
+                    ./gradlew acceptanceTest  -Dcalculator.url=http://10.106.222.127:8080 --info
                 ''' 
               publishHTML (
                 target: [
