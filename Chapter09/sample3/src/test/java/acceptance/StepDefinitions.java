@@ -28,10 +28,6 @@ public class StepDefinitions {
         String url = String.format("%s/sum?a=%s&b=%s", server, a, b);
         result = restTemplate.getForObject(url, String.class);
     }
-    @Then("^I receive (.*) as a result$")
-    public void i_receive_as_a_result(String expectedResult) throws Throwable {
-        assertEquals(expectedResult, result);
-    }
     
     @When("^the calculator divides them$")
     public void the_calculator_divides_them() throws Throwable {
