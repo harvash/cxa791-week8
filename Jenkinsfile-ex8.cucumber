@@ -10,25 +10,34 @@ pipeline {
         git 'https://github.com/harvash/cxa791-week8.git'
       }
     }
+    stage('Start Calc'){
+      steps{
+        container('centos') {     
+        sh '''
+          cd Chapter09/sample3
+          ls -l
+          curl -k  -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/apis/apps/v1/namespaces/default/deployments -XPOST -H "Content-type: application/yaml" --data-binary @hazelcast.yaml
+          curl -k  -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/apis/apps/v1/namespaces/default/deployments -XPOST -H "Content-type: application/yaml" --data-binary @calculator.yaml
+          curl -ik -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT/api/v1/namespaces/default/pods
+          '''
+        }
+      }
+    }
     stage('Test code'){
-      stages {
-        stage ('Run tests for master branch') { 
-          steps { 
-            container('gradle') {
-              sh '''cd Chapter09/sample3
-                    ls -l
-                    chmod +x gradlew
-                    ./gradlew acceptanceTest  -Dcalculator.url=http://10.106.222.127:8080 --info
-                ''' 
-              publishHTML (
-                target: [
-                  reportDir: 'Chapter09/sample3/build/reports/tests/acceptanceTest',
-                  reportFiles: 'index.html',
-                  reportName: 'Acceptance Testing'
-                ]
-              )
-            }
-          }
+      steps { 
+        container('gradle') {
+          sh '''cd Chapter09/sample3
+                ls -l
+                chmod +x gradlew
+                ./gradlew acceptanceTest  -Dcalculator.url=http://calc-svc:8080 --info
+            ''' 
+          publishHTML (
+            target: [
+              reportDir: 'Chapter09/sample3/build/reports/tests/acceptanceTest',
+              reportFiles: 'index.html',
+              reportName: 'Acceptance Testing'
+            ]
+          )
         }
       }
     }

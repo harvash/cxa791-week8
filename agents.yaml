@@ -19,3 +19,16 @@ spec:
       requests:
         cpu: 100m
         memory: 512M
+  - name: centos
+    image: centos
+    command:
+    - sleep
+    args:
+    - 99d
+    resources:
+      limits:
+        cpu: 500m
+        memory: 128M
+      requests:
+        cpu: 100m
+        memory: 64M
